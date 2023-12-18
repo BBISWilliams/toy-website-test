@@ -11,7 +11,7 @@ az ad app federated-credential create \
     \"name\":\"toy-website-test\",
     \"issuer\":\"https://token.actions.githubusercontent.com\",
     \"subject\":\"repo:${githubOrganizationName}/${githubRepositoryName}:environment:Website\",
-    \"audiences\":[\"api://AzureADTokenExhange\"]
+    \"audiences\":[\"api://AzureADTokenExchange\"]
   }"
 
 resourceGroupResourceId=$(az group create --name ToyWebsiteTest --location westus3 --query id --output tsv)
