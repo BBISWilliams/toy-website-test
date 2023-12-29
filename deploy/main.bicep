@@ -89,6 +89,7 @@ resource applicationInsights 'Microsoft.Insights/components@2020-02-02' = {
     Request_Source: 'rest'
     Flow_Type: 'Bluefield'
     WorkspaceResourceId: logAnalyticsWorkspace.id
+
   }
 }
 
@@ -97,6 +98,9 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   location: location
   kind: 'StorageV2'
   sku: environmentConfigurationMap[environmentType].storageAccount.sku
+  properties: {
+    allowBlobPublicAccess: false
+  }
 }
 
 output appServiceAppHostName string = appServiceApp.properties.defaultHostName
