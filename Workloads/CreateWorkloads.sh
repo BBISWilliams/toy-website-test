@@ -14,6 +14,15 @@ az ad app federated-credential create \
     \"audiences\":[\"api://AzureADTokenExchange\"]
   }"
 
+az ad app federated-credential create \
+   --id $applicationRegistrationObjectId \
+   --parameters "{
+    \"name\":\"toy-website-test-branch\",
+    \"issuer\":\"https://token.actions.githubusercontent.com\",
+    \"subject\":\"repo:${githubOrganizationName}/${githubRepositoryName}:ref:refs/heads/main\",
+    \"audiences\":[\"api://AzureADTokenExchange\"]
+  }"
+
 resourceGroupResourceId=$(az group create --name ToyWebsiteTest --location westus3 --query id --output tsv)
 az ad sp create --id $applicationRegistrationObjectId
 az role assignment create \
